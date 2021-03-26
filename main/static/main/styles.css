@@ -1,0 +1,40 @@
+body {
+	background: #ccffbd;
+	font-family: 'Oswald', 'Futura', sans-serif;
+}
+#wrapper {
+	margin-top: 10% !important;
+}
+#content {
+	background: #7eca9c;
+	padding: 25px;
+}
+#content > h2 {
+	font-size: 20px;
+	text-align: center;
+	padding-top: 0;
+}
+.t10 {
+	margin-top: 10px;
+}
+.t20 {
+	margin-top: 20px;
+}
+
+.list-group-item{
+	font-size: 22px;
+	color: #387c6d;
+}
+
+
+.todo-completed {
+	text-decoration: line-through;
+	background: #6e7582;
+	color: #1c1427;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 22px;
+}
+
+.glyphicon-time, .glyphicon-ok{
+	font-size: 18px;
+}

@@ -1,0 +1,91 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>To Do's</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="{% static 'main/bootstrap_files/css/flatly.min.css' %}" />
+	<link rel="stylesheet" href="{% static 'main/styles.css' %}" />
+</head>
+
+<body>
+
+	<div class="container-fluid" id="wrapper">
+
+		<div class="row">
+			<div class="col-lg-4 col-lg-offset-4" id="content">
+				<h2>IF YOU'RE NOT COMMITED TO ONE THING.<br />YOU'LL BE DISTRACTED BY EVERYTHING.</h2>
+
+				<!-- Pass the text from user input to add in url -->
+				<form action="{% url 'add' %}" method="POST" role="form">
+					{% csrf_token %}
+					<div class="form-group">
+						<div class="input-group">
+							{{ form.text }}
+							<span class="input-group-btn">
+								<button type="submit" class="btn btn-success" id="add-btn">
+									ADD NEW <i class="glyphicon glyphicon-file"></i>
+								</button>
+							</span>
+						</div>
+					</div>
+				</form>
+
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="btn-toolbar">
+							<div class="btn-group">
+								<a href="{% url 'deletecompleted' %}">
+									<button type="button" class="btn btn-info btn-outline-danger text-muted">
+										DELETE COMPLETED <i class="glyphicon glyphicon-trash"></i>
+									</button>
+								</a>
+							</div>
+							<div class="btn-group">
+								<a href="{% url 'deleteall' %}">
+									<button type="button" class="btn btn-info btn-outline-dark">
+										DELETE ALL <i class="glyphicon glyphicon-trash"></i>
+									</button>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<ul class="list-group t20">
+					{% for todo in todo_list %}
+
+					{% if todo.complete %}
+					<li class="list-group-item todo-completed">
+						<i class="glyphicon glyphicon-ok"></i>
+						{{ todo.text }}
+					</li>
+
+					{% else %}
+					<a href="{% url 'complete' todo.id %}">
+						<li class="list-group-item">
+							<i class="glyphicon glyphicon-time"></i>
+							{{ todo.text }}
+						</li>
+					</a>
+
+					{% endif %}
+					{% endfor %}
+
+				</ul>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+
+</html>
